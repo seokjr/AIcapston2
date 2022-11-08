@@ -8,10 +8,12 @@ def board(request):
     if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
+        img = request.POST["imgfile"]
         user = request.user
         board = Board(
             title=title,
             content=content,
+            imgfile=img,
             user=user,
         )
         board.save()
