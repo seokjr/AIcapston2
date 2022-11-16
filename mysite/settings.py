@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'blog',
     'bootstrap4',
     'accounts',
+    'test',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -86,10 +87,10 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # sql연동
 DATABASES = { 
 	'default': { 
-    	'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'BLOG', 
+    	'ENGINE': 'django.db.backends.mysql',   
+        'NAME': 'tests', 
         'USER': 'root', 
-        'PASSWORD': 'qlalfqjsgh123', 
+        'PASSWORD': '1234', 
         'HOST': 'localhost', 
         'PORT': '3306', 
      } 

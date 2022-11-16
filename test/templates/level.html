@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+{% comment %} {% if board %} {% endcomment %}
+<div style="width:1200px; margin:0px auto;">
+    <h2 style="text-align:center;">레벨테스트</h2><br>
+    
+    <div style="width:500px; margin:0px auto;">
+        <form action="" method="POST" style="max-width:500px;">
+            {% csrf_token %}
+            {% comment %} {% bootstrap_form form %} {% endcomment %}
+            <h1 style="text-align:center;">{{ n }} /20 </h1>
+            <button type="submit" class="btn btn-primary rounded-pill col-12">Next</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
