@@ -8,7 +8,7 @@ def board(request):
     if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        img = request.POST["imgfile"]
+        img = request.POST['imgfile']
         user = request.user
         board = Board(
             title=title,
@@ -16,7 +16,6 @@ def board(request):
             imgfile=img,
             user=user,
         )
-        board.save()
 
         return redirect('board')
     else:
@@ -33,6 +32,8 @@ def boardEdit(request, pk):
     if request.method == "POST":
         board.title = request.POST['title']
         board.content = request.POST['content']
+        if request.FILES['imgfile'] is not None:
+            board.imgfile = request.FILES['imgfile']
         board.user = request.user
 
         board.save()
@@ -46,3 +47,24 @@ def boardDelete(request, pk):
     board = Board.objects.get(id=pk)
     board.delete()
     return redirect('board')
+
+def fileUpload(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        img = request.FILES['imgfile']
+        user = request.user
+        board = Board(
+            title=title,
+            content=content,
+            imgfile=img,
+            user=user,
+        )
+        board.save()
+        return redirect('board')
+    else:
+        fileuploadForm = BoardForm
+        context = {
+            'fileuploadForm': fileuploadForm,
+        }
+        return render(request, 'write.html', context)

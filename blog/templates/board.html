@@ -20,9 +20,9 @@
             <tbody>
                 <tr class="td_color" >
                     <td>{{ board_list.pk }}</td>
-                    <td>{{ board_list.title }}</tdd>
+                    <td>{{ board_list.title }}</td>
                     <td>{{ board_list.content }}</td>
-                    <td><img src="{{ board_list.imgfile}}" style="width: 180px; height: 150px;" alt=""></td>
+                    <td><img src="{{ board_list.imgfile.url }}" style="width: 180px; height: 150px;" alt=""></td>
                     <td>{{ board_list.user }}</td>
                     <td><button class="btn btn-secondary btn-sm rounded-pill" onclick="location.href='/edit/{{board_list.pk}}'">수정</button></td>
                     <td><button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/delete/{{board_list.pk}}'">삭제</button></td>
@@ -31,12 +31,6 @@
             {% endfor %}
     </table>
     {% endif %}
-    <div style="width:500px; margin:0px auto;">
-        <form action="" method="POST" style="max-width:500px;">
-            {% csrf_token %}
-            {% bootstrap_form boardForm %}
-            <button type="submit" class="btn btn-primary rounded-pill col-12">POST</button>
-        </form>
-    </div>
+    <button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/write/{{board_list.pk}}'">글쓰기</button>
 </div>
-{% endblock %}
+{% endblock %}  
