@@ -48,6 +48,10 @@ def boardDelete(request, pk):
     board.delete()
     return redirect('board')
 
+def boardview(request,pk):
+    board = Board.objects.get(id=pk)
+    return render(request, 'view.html',{'view' : board})
+
 def fileUpload(request):
     if request.method == 'POST':
         title = request.POST['title']
@@ -68,3 +72,23 @@ def fileUpload(request):
             'fileuploadForm': fileuploadForm,
         }
         return render(request, 'write.html', context)
+    
+def boardrecommend(request, pk):
+    user = request.user
+    if Board.objects.filter(user_id = user) in Grouprecommend.objects.filter(group_id = user):
+        board = Board.objects.get(id=pk)
+    if request.method == 'POST':
+        board.title = request.POST['title']
+        board.content = request.POST['content']
+        board.imgfile = request.POST['imgfile']
+        board.user = request.user
+
+        return redirect('boardrecommend')
+    else:
+        boardForm = BoardForm
+        board = Board.objects.all()
+        context = {
+            'boardForm': boardForm,
+            'board': board,
+        }
+        return render(request, 'boardrecommend.html', context)

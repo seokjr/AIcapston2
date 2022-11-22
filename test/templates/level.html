@@ -14,8 +14,8 @@
             {% csrf_token %}
             {% comment %} {% bootstrap_form form %} {% endcomment %}
             
-            <p>답:<input type="text" value="클릭하세요" name="answer"></p> 
-            <h1 style="text-align:center;">{{ n }} /20 </h1>
+            <p>답:<input type="text" name="answer"></p> 
+            <h1 style="text-align:center;">{{ n }} /40 </h1>
             <button type="submit" class="btn btn-primary rounded-pill col-12">Next</button>
         </form>
     </div>

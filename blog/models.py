@@ -13,8 +13,12 @@ class Post(models.Model):
 class Board(models.Model):
     title = models.CharField(max_length=20, null=True)
     imgfile = models.ImageField(null=True, upload_to="", blank=True)
-    content = models.TextField()
+    content = models.TextField(null=True)
     user = models.ForeignKey(User,on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
         return self.title
+
+class Grouprecommend(models.Model):
+    group_id = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)

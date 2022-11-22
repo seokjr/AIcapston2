@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'accounts',
     'test',
+    'testresult',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div style="width:1200px; margin:0px auto;">
+    <h2 style="text-align:center;">유사 사용자 추천 게시판</h2><br>
+    {% if board %}
+    <table style="text-align:center; width:1200px; border:1px solid black;" class="table">
+        <thead>
+            <tr class="th_color">
+                <th>번호</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>이미지</th>
+                <th>작성자</th>
+            </tr>
+        </thead>
+            {% for board_list in board %}
+            <tbody>
+                <tr class="td_color" >
+                    <td>{{ board_list.user_group }}</td>
+                    <td>{{ board_list.pk }}</td>
+                    <td>{{ board_list.title }}</td>
+                    <td>{{ board_list.content }}</td>
+                    <td><img src="{{ board_list.imgfile.url }}" style="width: 200px; height: 200px;" alt=""></td>
+                    <td>{{ board_list.user }}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+    </table>
+    {% endif %}
+    <button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/write/{{board_list.pk}}'">글쓰기</button>
+</div>
+{% endblock %}  

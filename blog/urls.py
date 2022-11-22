@@ -7,6 +7,9 @@ urlpatterns = [
     path('edit/<int:pk>', boardEdit, name='edit'),
     path('delete/<int:pk>', boardDelete, name='delete'),
     path('write/', fileUpload, name='write'),
+    path('view/<int:pk>', boardview, name='view'),
+    path('boardrecommend/<int:pk>',boardrecommend, name='boardrecommend'),
+
 ]
 
 
