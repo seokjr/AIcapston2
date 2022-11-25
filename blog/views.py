@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from .forms import *
 from .models import *
+from django.contrib import messages
 
 def board(request):
     if request.method == 'POST':
@@ -73,22 +74,41 @@ def fileUpload(request):
         }
         return render(request, 'write.html', context)
     
-def boardrecommend(request, pk):
-    user = request.user
-    if Board.objects.filter(user_id = user) in Grouprecommend.objects.filter(group_id = user):
-        board = Board.objects.get(id=pk)
-    if request.method == 'POST':
-        board.title = request.POST['title']
-        board.content = request.POST['content']
-        board.imgfile = request.POST['imgfile']
-        board.user = request.user
-
-        return redirect('boardrecommend')
+def recommend(request, user_id):
+    user = request.user.id
+    if Grouprecommend.objects.filter(user_id = user):
+        target = Grouprecommend.objects.filter(user_id = user).values('group_id')
+        point = 0
+        for key in target:
+            if point == 0:
+                uservalue1 = key['group_id']
+            if point == 1:
+                uservalue2 = key['group_id']
+            if point == 2:
+                uservalue3 = key['group_id']
+            point += 1
+        board = Board.objects.filter(user_id = uservalue1)
+        board2 = Board.objects.filter(user_id = uservalue2)
+        board3 = Board.objects.filter(user_id = uservalue3)
+        if point == 1:
+            board3 = ''
+        elif point == 0:
+            board2 = ''
+            board3 = ''
+        boardForm = BoardForm
+        context = {
+            'boardForm': boardForm,
+            'board': board,
+            'board2':board2,
+            'board3':board3,
+        }
+        return render(request, 'recommend.html', context)
     else:
+        messages.error(request,'추천이 안됐습니다! 초기 페이지로 갑니다.', extra_tags='danger')
         boardForm = BoardForm
         board = Board.objects.all()
         context = {
             'boardForm': boardForm,
             'board': board,
         }
-        return render(request, 'boardrecommend.html', context)
+        return redirect('board')

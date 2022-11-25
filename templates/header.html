@@ -5,7 +5,7 @@
                 <ul class="underline-hover">
                     <li class="logout_text"><a href="{% url 'board' %}"><span>홈</span></a></li>
                     <li class="logout_text"><a href="{% url 'board' %}"><span>게시판</span></a></l1>
-                    <li class="logout_text"><a href="boardrecommend/1"><span>추천게시판</span></a></li>
+                    <li class="logout_text"><a href="{% url 'recommend' user.id %}"><span>추천게시판</span></a></li>
                     <li class="logout_text"><a href="{% url 'level' %}"><span>레벨테스트</span></a></li> 
                     <li class="logout_text"><a href="{% url 'testresult' %}"><span>레벨테스트결과</span></a></li> 
                     <li class="logout_text"><a href="{% url 'logout' %}"><span>로그아웃</span></a></li>
