@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from .forms import *
 from .models import *
 from django.db.models import Count
+from .ml import *
 
 next = 1
 answers = 0

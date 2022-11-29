@@ -20,8 +20,8 @@
             <tr class="th_color">
                 <th>번호</th>
                 <th>제목</th>
-                <th>내용</th>
                 <th>이미지</th>
+                <th>솔루션</th>
                 <th>작성자</th>
                 <th>수정하기</th>
                 <th>삭제하기</th>
@@ -33,13 +33,12 @@
                 <tr class="td_color" >
                     <td>{{ board_list.pk }}</td>
                     <td>{{ board_list.title }}</td>
-                    <td>{{ board_list.content }}</td>
                     <td><img src="{{ board_list.imgfile.url }}" style="width: 180px; height: 150px;" alt=""></td>
+                    <td><img src="{{ board_list.solimg.url }}" style="width: 180px; height: 150px;" alt=""></td>
                     <td>{{ board_list.user }}</td>
                     <td><button class="btn btn-secondary btn-sm rounded-pill" onclick="location.href='/edit/{{board_list.pk}}'">수정</button></td>
                     <td><button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/delete/{{board_list.pk}}'">삭제</button></td>
                     <td><button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/view/{{board_list.pk}}'">보기</button></td>
-
                 </tr>
             </tbody>
             {% endfor %}

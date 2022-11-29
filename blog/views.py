@@ -8,13 +8,14 @@ from django.contrib import messages
 def board(request):
     if request.method == 'POST':
         title = request.POST['title']
-        content = request.POST['content']
         img = request.POST['imgfile']
+        content = request.POST['solimg']
+
         user = request.user
         board = Board(
             title=title,
-            content=content,
             imgfile=img,
+            content=content,
             user=user,
         )
 
@@ -32,7 +33,7 @@ def boardEdit(request, pk):
     board = Board.objects.get(id=pk)
     if request.method == "POST":
         board.title = request.POST['title']
-        board.content = request.POST['content']
+        board.solimg = request.POST['solimg']
         if request.FILES['imgfile'] is not None:
             board.imgfile = request.FILES['imgfile']
         board.user = request.user
@@ -56,12 +57,12 @@ def boardview(request,pk):
 def fileUpload(request):
     if request.method == 'POST':
         title = request.POST['title']
-        content = request.POST['content']
         img = request.FILES['imgfile']
+        content = request.FILES['solimg']
         user = request.user
         board = Board(
             title=title,
-            content=content,
+            solimg=content,
             imgfile=img,
             user=user,
         )

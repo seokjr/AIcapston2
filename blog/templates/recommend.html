@@ -3,15 +3,16 @@
 {% block content %}
 <div style="width:1200px; margin:0px auto;">
     <h2 style="text-align:center;">유사 사용자 추천 게시판</h2><br>
-    {% if board %}
     <table style="text-align:center; width:1200px; border:1px solid black;" class="table">
+    {% if board %}
         <thead>
             <tr class="th_color">
                 <th>번호</th>
                 <th>제목</th>
-                <th>내용</th>
                 <th>이미지</th>
+                <th>솔루션</th>
                 <th>작성자</th>
+                <th>보기</th>
             </tr>
         </thead>
             {% for board_list in board %}
@@ -19,14 +20,41 @@
                 <tr class="td_color" >
                     <td>{{ board_list.pk }}</td>
                     <td>{{ board_list.title }}</td>
-                    <td>{{ board_list.content }}</td>
-                    <td><img src="{{ board_list.imgfile.url }}" style="width: 200px; height: 200px;" alt=""></td>
+                    <td><img src="{{ board_list.imgfile.url }}" style="width: 180px; height: 150px;" alt=""></td>
+                    <td><img src="{{ board_list.solimg.url }}" style="width: 180px; height: 150px;" alt=""></td>
                     <td>{{ board_list.user }}</td>
+                    <td><button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/view/{{board_list.pk}}'">보기</button></td>
+                </tr>
+            </tbody>
+            {% endfor %}
+    {% endif %}
+    {% if board2 %}
+            {% for board_list in board2 %}
+            <tbody>
+                <tr class="td_color" >
+                    <td>{{ board_list.pk }}</td>
+                    <td>{{ board_list.title }}</td>
+                    <td><img src="{{ board_list.imgfile.url }}" style="width: 180px; height: 150px;" alt=""></td>
+                    <td><img src="{{ board_list.solimg.url }}" style="width: 180px; height: 150px;" alt=""></td>
+                    <td>{{ board_list.user }}</td>
+                    <td><button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/view/{{board_list.pk}}'">보기</button></td>
+            </tbody>
+            {% endfor %}
+    {% endif %}
+    {% if board3 %}
+            {% for board_list in board3 %}
+            <tbody>
+                <tr class="td_color" >
+                    <td>{{ board_list.pk }}</td>
+                    <td>{{ board_list.title }}</td>
+                    <td><img src="{{ board_list.imgfile.url }}" style="width: 180px; height: 150px;" alt=""></td>
+                    <td><img src="{{ board_list.solimg.url }}" style="width: 180px; height: 150px;" alt=""></td>
+                    <td>{{ board_list.user }}</td>
+                    <td><button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/view/{{board_list.pk}}'">보기</button></td>
                 </tr>
             </tbody>
             {% endfor %}
     </table>
     {% endif %}
-    <button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/write/{{board_list.pk}}'">글쓰기</button>
 </div>
 {% endblock %}  
