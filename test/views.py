@@ -59,6 +59,7 @@ def level(request):
                 grades.save()       
                 
                 gradetuple = grade.objects.filter(user_id = user)
+
             
             return render(request, 'result.html', {'gratetuple': gradetuple})
             
